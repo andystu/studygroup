@@ -30,18 +30,23 @@ rake doc:app
 # Building notes:
 
 ## initial command
+```
 rails new studygroup -d postgresql
 cd studygroup
 git init
 git add .
 git commit -m 'init commit'
+```
 
 ## add required gems to Gemfile
+```
 bundle
 git add .
 git commit -m 'add required gems'
+```
 
 ## add a branch to add User
+```
 git checkout -b add_user
 rails g devise:install
 rails g devise:views
@@ -49,19 +54,25 @@ rails g devise User
 git add .
 git commit -m 'add user'
 git push origin add_user
+```
 
 ## add a branch to add Group
+```
 git checkout -b add_group
 rails g scaffold group title description:text user:references:index limitation:integer
 git add .
 git commit -m 'add group information'
 git push origin add_group
+```
 
 ## build group user relationship
+```
 git checkout -b build_group_user_relationship
 rails g model group_user group_id:integer user_id:integer
 # rails g model group_user group:references user:references
+```
 # modify user.rb
+```
 ...
  has_many :groups
  has_many :posts
@@ -69,8 +80,10 @@ rails g model group_user group_id:integer user_id:integer
  has_many :group_users
  has_many :participated_groups, through: :group_users, source: :group
 ...
+```
 
 # modify group_users
+```
 ...
   belongs_to :user
   belongs_to :group
@@ -87,14 +100,18 @@ rails g model group_user group_id:integer user_id:integer
     participated_groups.include?(group)
   end
 ...
+```
 
 # modify group.rb
+```
 ...
   has_many :group_users
   has_many :members, through: :group_users, source: :user
 ...
+```
 
 # modify groups_conftroller.rb
+```
 ...
   def join
     @group = Group.find(params[:id])
@@ -122,8 +139,10 @@ rails g model group_user group_id:integer user_id:integer
     redirect_to group_path(@group)
   end
 ...
+```
 
 # modify show.haml
+```
 ...
 - if current_user.present?
   - if current_user.is_member_of?(@group)
@@ -131,8 +150,10 @@ rails g model group_user group_id:integer user_id:integer
   - else
     = link_to("Join Group", join_group_path(@group), method: :post, class: "btn btn-info")
 ...
+```
 
 #route.rb
+```
 ...
   resources :groups do
     member do
@@ -141,3 +162,19 @@ rails g model group_user group_id:integer user_id:integer
     end
   end
 ...
+```
+
+# add admin
+```
+rails g devise Admin
+
+# modify models/admin.rb
+...
+  has_many :groups
+...
+
+# modify models/group.rb
+...
+  belongs_to :admin
+...
+```
