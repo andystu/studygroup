@@ -32,9 +32,64 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# for c9 setup
+# mysql-ctl start
+# rails s -b $IP -p $PORT -e production
+# RAILS_ENV=production rake secret
+
+# App Tool
+gem 'rename'
+
+# Style, Views, Template (libraries & tools)
+gem 'bootstrap-sass'
+gem 'breadcrumbs_on_rails'
+gem 'bootstrap-datepicker-rails'
+gem 'will_paginate'
+gem 'will_paginate-bootstrap'
+gem 'bh'
+gem 'font-awesome-rails'
+gem 'active_link_to'
+gem 'haml-rails'
+gem 'jquery-turbolinks'
+gem 'redactor-rails', github: 'andystu/redactor-rails'
+gem 'devise-bootstrap-views'
+# Forms & Helpers
+gem "bootstrap_form"
+
+# Models
+gem 'simple_enum'
+gem 'state_machine'
+gem 'soft_deletion'
+#gem 'stamp'
+gem 'stamp', '0.4.0' # does not work with newer versions
+gem 'stamp-i18n'
+
+# User System
+gem 'devise'
+gem 'omniauth'
+gem 'omniauth-facebook'
+gem 'email_validator'
+gem 'rolify'
+
+# Others tools
+gem 'rails-i18n'
+gem 'devise-i18n'
+gem 'settingslogic'
+gem 'carrierwave'
+gem 'mini_magick'
+#gem 'puma'
+#gem 'thin'
+#gem 'unicorn'
+gem 'analytics-rails'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'binding_of_caller'
+  gem 'awesome_rails_console'
+  gem 'better_errors'
+  gem 'database_cleaner'
+  gem 'rspec-rails'
 end
 
 group :development do
@@ -44,4 +99,3 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
