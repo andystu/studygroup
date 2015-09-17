@@ -26,3 +26,28 @@ Things you may want to cover:
 
 Please feel free to use a different markup language if you do not plan to run
 <tt>rake doc:app</tt>.
+
+# Building notes:
+
+## initial command
+rails new studygroup -d postgresql
+cd studygroup
+git init
+git add .
+git commit -m 'init commit'
+
+## add required gems to Gemfile
+bundle
+git add .
+git commit -m 'add required gems'
+
+## add a branch to add User
+git checkout -b add_user
+rails g devise:install
+rails g devise:views
+rails g devise User
+git add .
+git commit -m 'add user'
+git push origin add_user
+
+## 
