@@ -50,4 +50,9 @@ git add .
 git commit -m 'add user'
 git push origin add_user
 
-## 
+## add a branch to add Group
+git checkout -b add_group
+rails g scaffold group title description:text user:references:index limitation:integer
+git add .
+git commit -m 'add group information'
+git push origin add_group
