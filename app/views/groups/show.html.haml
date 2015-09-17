@@ -1,0 +1,18 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @group.title
+%p
+  %b Description:
+  = @group.description
+%p
+  %b User:
+  = @group.user
+%p
+  %b Limitation:
+  = @group.limitation
+
+= link_to 'Edit', edit_group_path(@group)
+\|
+= link_to 'Back', groups_path
